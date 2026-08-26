@@ -13,6 +13,8 @@ If you're running the game _without_ Steam and it's immediately closing on start
 ## Linux (Proton/Wine)
 As of version 0.0.7.2, SPL officially supports Linux through Proton/Wine. Below are the steps to install and run SPL on Linux.
 
+Proton 10 is recommended. [Proton 11 does not load msvcrt.dll](https://github.com/Fexty12573/SharpPluginLoader/issues/62).
+
 1. Install .NET Desktop Runtime 8.0 and Direct 3D Shader Compiler using [protontricks](https://github.com/Matoking/protontricks):
 ```bash
 protontricks 582010 dotnetdesktop8 d3dcompiler_47
