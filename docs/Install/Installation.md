@@ -17,20 +17,20 @@ As of version 0.0.7.2, SPL officially supports Linux through Proton/Wine. Below 
 ```bash
 protontricks 582010 dotnetdesktop8 d3dcompiler_47
 ```
-2. Download the latest linux release of SPL (`SharpPluginLoader-<version>-linux.zip`) from the [Releases Page](https://github.com/Fexty12573/SharpPluginLoader/releases) and extract it into the game's root directory. After doing so you should have a `ucrtbase.dll` file in the same directory as `MonsterHunterWorld.exe`.
+2. Download the latest linux release of SPL (`SharpPluginLoader-<version>-linux.zip`) from the [Releases Page](https://github.com/Fexty12573/SharpPluginLoader/releases) and extract it into the game's root directory. After doing so you should have a `msvcrt.dll` file in the same directory as `MonsterHunterWorld.exe`.
 3. Set the Steam launch options for MHW as follows:
 ```bash
 # Use this for SPL only
-WINEDLLOVERRIDES="ucrtbase=n,b" %command%
+WINEDLLOVERRIDES="msvcrt=n,b" %command%
 
 # Or this for SPL together with Stracker's Loader
-WINEDLLOVERRIDES="ucrtbase,dinput8=n,b" %command%
+WINEDLLOVERRIDES="msvcrt,dinput8=n,b" %command%
 ```
 
 If the game fails to start, even with the dependencies above correctly installed, check your environment for `DOTNET_ROOT`. It may be set by your package manager. For example, on Gentoo with `eselect dotnet`. You can unset it in your Steam launch options like so:
 ```bash
 # Unset DOTNET_ROOT to avoid conflict with native dotnet and dotnet installed in the Wine prefix.
-DOTNET_ROOT= WINEDLLOVERRIDES="ucrtbase,dinput8=n,b" %command%
+DOTNET_ROOT= WINEDLLOVERRIDES="msvcrt,dinput8=n,b" %command%
 ```
 
 ## Usage
@@ -54,7 +54,7 @@ Depending on the plugins you have installed you might also see an overlay/UI app
 ### Directory Structure Examples
 ```
 <Root game directory>
-└── winmm.dll/ucrtbase.dll
+└── winmm.dll/msvcrt.dll
 └── nativePC
     └── plugins
         └── CSharp
@@ -67,7 +67,7 @@ Depending on the plugins you have installed you might also see an overlay/UI app
 Conversely, the following is **not** valid, as `Plugin1.dll` is inside the `Loader` directory. The plugin loader will not load it.
 ```
 <Root game directory>
-└── winmm.dll/ucrtbase.dll
+└── winmm.dll/msvcrt.dll
 └── nativePC
     └── plugins
         └── CSharp
